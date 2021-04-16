@@ -54,6 +54,12 @@ steps:
     arguments: '--no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
     zipAfterPublish: true
 
+- task: WhiteSource@21
+  displayName: 'Run WhiteSource Bolt'
+  inputs:
+    cwd: '$(System.DefaultWorkingDirectory)'
+    projectName: 'Space Game - web - Whitesource'
+
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
   condition: succeeded()
